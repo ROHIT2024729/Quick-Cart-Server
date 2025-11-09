@@ -8,7 +8,26 @@ import cartRoutes from "./routers/Cart.js";
 import addressRoutes from "./routers/Address.js";
 import orderRoutes from "./routers/order.js";
 import cors from 'cors';
+import axios from 'axios';
+
 const app = express();
+
+
+const url = `https://quick-cart-server-osdm.onrender.com`;
+const interval = 30000;
+
+function reloadWebsite() {
+  axios
+    .get(url)
+    .then((response) => {
+      console.log("website reloded");
+    })
+    .catch((error) => {
+      console.error(`Error : ${error.message}`);
+    });
+}
+
+setInterval(reloadWebsite, interval);
 
 dotenv.config();
 
